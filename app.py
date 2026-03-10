@@ -15,7 +15,7 @@ st.write("Aplikasi ini menggunakan arsitektur MobileNetV3 untuk mengidentifikasi
 # 2. Fungsi Memanggil Model
 @st.cache_resource
 def load_my_model():
-    # Pastikan nama ini sama dengan file .h5 yang kamu download tadi
+    # Pastikan nama ini sama dengan file keras yang kamu download tadi
     model = tf.keras.models.load_model('model_lsd_sapi.keras', compile=False)
     return model
 
