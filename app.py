@@ -5,8 +5,8 @@ import numpy as np
 
 st.set_page_config(page_title="Deteksi LSD Sapi", page_icon="🐄")
 
-st.title("🛡️ Deteksi Penyakit LSD Sapi")
-st.write("Aplikasi ini menggunakan arsitektur MobileNetV3 untuk mengidentifikasi gejala Lumpy Skin Disease.")
+st.title("🛡️ Deteksi Penyakit LSD Sapi by TA aidil-samudra")
+st.write("Aplikasi ini menggunakan arsitektur MobileNetV3 untuk mengidentifikasi penyakit Lumpy Skin Disease.")
 
 @st.cache_resource
 def load_my_model():
@@ -35,7 +35,7 @@ def predict(image_data, model):
     if prediction.shape[-1] == 1:
         prob = float(prediction[0][0])
         
-        THRESHOLD = 0.75 
+        THRESHOLD = 0.70 
         
         if prob >= THRESHOLD:
             result = CLASS_NAMES[1] 
@@ -65,7 +65,7 @@ if uploaded_file is not None:
                 if "LSD" in label:
                     st.error(f"Hasil: {label}")
                     st.warning(f"Tingkat Keyakinan: {score:.2f}%")
-                    st.write("Saran: Segera hubungi dokter hewan dan pisahkan sapi dari kelompoknya. Ingat sapi, ingat Aidil!")
+                    st.write("Saran: Segera hubungi dokter hewan dan pisahkan sapi dari kelompoknya.")
                 else:
                     st.success(f"Hasil: {label}")
                     st.info(f"Tingkat Keyakinan: {score:.2f}%")
