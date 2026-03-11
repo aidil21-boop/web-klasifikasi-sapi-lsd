@@ -23,7 +23,7 @@ CLASS_NAMES = ['Sehat (Healthy)', 'Terinfeksi LSD (Lumpy Skin)']
 
 def predict(image_data, model):
     image = image_data.convert("RGB")
-    image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS)
+    image = image.resize((224, 224))
 
     img_array = np.array(image)
     img_array = np.expand_dims(img_array, axis=0)
