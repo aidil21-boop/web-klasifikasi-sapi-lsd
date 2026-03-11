@@ -10,8 +10,12 @@ st.write("Aplikasi ini menggunakan arsitektur MobileNetV3 untuk mengidentifikasi
 
 @st.cache_resource
 def load_my_model():
-    model = tf.keras.models.load_model("model_lsd_sapi.keras", compile=False)
-    return model
+    try:
+        model = tf.keras.models.load_model("model_lsd_sapi.keras", compile=False)
+        return model
+    except Exception as e:
+        st.error(f"Gagal memuat model: {e}")
+        return None
 
 model = load_my_model()
 
