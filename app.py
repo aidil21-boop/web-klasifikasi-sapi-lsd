@@ -28,7 +28,6 @@ def predict(image_data, model):
     img_array = np.array(image)
     img_array = np.expand_dims(img_array, axis=0)
 
-    # Preprocessing pembagian 255 sesuai dengan skenario training-mu
     img_array = img_array / 255.0
     
     prediction = model.predict(img_array)
@@ -36,14 +35,13 @@ def predict(image_data, model):
     if prediction.shape[-1] == 1:
         prob = float(prediction[0][0])
         
-        # Batas keyakinan (Threshold) disetel ke 75%
         THRESHOLD = 0.5 
         
         if prob >= THRESHOLD:
-            result = CLASS_NAMES[1] 
+            result = CLASS_NAMES[0] 
             confidence = prob * 100
         else:
-            result = CLASS_NAMES[0]
+            result = CLASS_NAMES[1]
             confidence = (1 - prob) * 100
     else:
         result = CLASS_NAMES[np.argmax(prediction)]
