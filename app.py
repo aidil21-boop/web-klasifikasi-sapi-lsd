@@ -63,7 +63,7 @@ if uploaded_file is not None:
                 if "LSD" in label:
                     st.error(f"Hasil: {label}")
                     st.warning(f"Tingkat Keyakinan: {score:.2f}%")
-                    st.write("Saran: Segera hubungi dokter hewan dan pisahkan sapi dari kelompoknya.")
+                    st.write("Saran: Segera hubungi dokter hewan dan pisahkan sapi dari kelompoknya. ingat sapi, ingai aidil!")
                 else:
                     st.success(f"Hasil: {label}")
                     st.info(f"Tingkat Keyakinan: {score:.2f}%")
