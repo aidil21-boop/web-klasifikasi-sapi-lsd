@@ -27,13 +27,21 @@ def predict(image_data, model):
 
     img_array = np.array(image)
     img_array = np.expand_dims(img_array, axis=0)
-
     img_array = tf.keras.applications.mobilenet_v3.preprocess_input(img_array)
 
     prediction = model.predict(img_array)
 
-    result = CLASS_NAMES[np.argmax(prediction)]
-    confidence = float(np.max(prediction)) * 100
+       if prediction.shape[-1] == 1:
+        prob = float(prediction[0][0])
+        if prob >= 0.5:
+            result = CLASS_NAMES[1]
+            confidence = prob * 100
+        else:
+            result = CLASS_NAMES[0]
+            confidence = (1 - prob) * 100
+    else:
+        result = CLASS_NAMES[np.argmax(prediction)]
+        confidence = float(np.max(prediction)) * 100
 
     return result, confidence
 
