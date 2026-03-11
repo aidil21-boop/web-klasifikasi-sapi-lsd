@@ -27,8 +27,6 @@ def predict(image_data, model):
 
     img_array = np.array(image)
     img_array = np.expand_dims(img_array, axis=0)
-    
-    img_array = img_array / 255.0
 
     prediction = model.predict(img_array)
 
