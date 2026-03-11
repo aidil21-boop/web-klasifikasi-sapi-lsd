@@ -37,7 +37,7 @@ def predict(image_data, model):
         prob = float(prediction[0][0])
         
         # Batas keyakinan (Threshold) disetel ke 75%
-        THRESHOLD = 0.75 
+        THRESHOLD = 0.5 
         
         if prob >= THRESHOLD:
             result = CLASS_NAMES[1] 
