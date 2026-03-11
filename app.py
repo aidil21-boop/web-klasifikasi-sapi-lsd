@@ -1,6 +1,3 @@
-import os
-os.environ["TF_USE_LEGACY_KERAS"] = "1" 
- 
 import tensorflow as tf
 import streamlit as st
 from PIL import Image, ImageOps
