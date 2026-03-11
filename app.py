@@ -1,6 +1,9 @@
-import streamlit as st
+import os
+os.environ["TF_USE_LEGACY_KERAS"] = "1" 
+
 import tensorflow as tf
-from PIL import Image, ImageOps
+import streamlit as st
+from PIL import Image
 import numpy as np
 
 st.set_page_config(page_title="Deteksi LSD Sapi", page_icon="🐄")
@@ -10,12 +13,8 @@ st.write("Aplikasi ini menggunakan arsitektur MobileNetV3 untuk mengidentifikasi
 
 @st.cache_resource
 def load_my_model():
-    try:
-        model = tf.keras.models.load_model("model_lsd_sapi.keras", compile=False)
-        return model
-    except Exception as e:
-        st.error(f"Gagal memuat model: {e}")
-        return None
+    model = tf.keras.models.load_model("model_lsd_sapi.keras", compile=False)
+    return model
 
 model = load_my_model()
 
