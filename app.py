@@ -28,13 +28,17 @@ def predict(image_data, model):
     img_array = np.array(image)
     img_array = np.expand_dims(img_array, axis=0)
 
+    # Preprocessing pembagian 255 sesuai dengan skenario training-mu
     img_array = img_array / 255.0
     
     prediction = model.predict(img_array)
 
     if prediction.shape[-1] == 1:
         prob = float(prediction[0][0])
+        
+        # Batas keyakinan (Threshold) disetel ke 75%
         THRESHOLD = 0.75 
+        
         if prob >= THRESHOLD:
             result = CLASS_NAMES[1] 
             confidence = prob * 100
@@ -63,7 +67,7 @@ if uploaded_file is not None:
                 if "LSD" in label:
                     st.error(f"Hasil: {label}")
                     st.warning(f"Tingkat Keyakinan: {score:.2f}%")
-                    st.write("Saran: Segera hubungi dokter hewan dan pisahkan sapi dari kelompoknya. ingat sapi, ingai aidil!")
+                    st.write("Saran: Segera hubungi dokter hewan dan pisahkan sapi dari kelompoknya. Ingat sapi, ingat Aidil!")
                 else:
                     st.success(f"Hasil: {label}")
                     st.info(f"Tingkat Keyakinan: {score:.2f}%")
