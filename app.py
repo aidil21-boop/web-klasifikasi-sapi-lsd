@@ -21,9 +21,6 @@ model = load_my_model()
 
 CLASS_NAMES = ['Sehat (Healthy)', 'Terinfeksi LSD (Lumpy Skin)']
 
-# TERSANGKA 1: Urutan dibalik menyesuaikan abjad (0 = LSD, 1 = Sehat)
-CLASS_NAMES = ['Terinfeksi LSD (Lumpy Skin)', 'Sehat (Healthy)']
-
 def predict(image_data, model):
     image = image_data.convert("RGB")
     image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS)
@@ -31,22 +28,19 @@ def predict(image_data, model):
     img_array = np.array(image)
     img_array = np.expand_dims(img_array, axis=0)
     
-    # TERSANGKA 2: Kita ganti preprocess_input jadi pembagian 255 biasa
     img_array = img_array / 255.0
 
     prediction = model.predict(img_array)
 
     if prediction.shape[-1] == 1:
         prob = float(prediction[0][0])
-        # Logika Binary
         if prob >= 0.5:
-            result = CLASS_NAMES[1] # Index 1: Sehat
+            result = CLASS_NAMES[1]
             confidence = prob * 100
         else:
-            result = CLASS_NAMES[0] # Index 0: LSD
+            result = CLASS_NAMES[0]
             confidence = (1 - prob) * 100
     else:
-        # Logika Categorical
         result = CLASS_NAMES[np.argmax(prediction)]
         confidence = float(np.max(prediction)) * 100
 
