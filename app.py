@@ -34,8 +34,9 @@ def predict(image_data, model):
 
     if prediction.shape[-1] == 1:
         prob = float(prediction[0][0])
-        if prob >= 0.5:
-            result = CLASS_NAMES[1]
+        THRESHOLD = 0.75 
+        if prob >= THRESHOLD:
+            result = CLASS_NAMES[1] 
             confidence = prob * 100
         else:
             result = CLASS_NAMES[0]
