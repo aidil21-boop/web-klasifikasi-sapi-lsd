@@ -12,7 +12,8 @@ st.title("🛡️ Deteksi Penyakit LSD Sapi")
 st.write("Aplikasi ini menggunakan arsitektur MobileNetV3 untuk mengidentifikasi gejala Lumpy Skin Disease.")
 
 @st.cache_resource
-def load_my_model():    try:
+def load_my_model():
+    try:
         model = tf.keras.models.load_model("model_lsd_sapi.keras", compile=False)
         return model
     except Exception as e:
