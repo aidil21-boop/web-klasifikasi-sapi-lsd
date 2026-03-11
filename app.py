@@ -31,7 +31,8 @@ def predict(image_data, model):
 
     prediction = model.predict(img_array)
 
-       if prediction.shape[-1] == 1:
+    # Spasi sudah dirapikan agar sejajar dengan baris prediction
+    if prediction.shape[-1] == 1:
         prob = float(prediction[0][0])
         if prob >= 0.5:
             result = CLASS_NAMES[1]
